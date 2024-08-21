@@ -92,14 +92,29 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 //STATE VARIABLE
-let providerURL = '';
+let providerURL = 'https://polygon-mainnet.g.alchemy.com/v2/UnvUkRpOqOqnbJw4mCsH49LU34eojO4H';
 
 let provider;
 let privateKey;
 let address;
 
 //FUNCTION
-function handler(){};
+function handler(){
+    document.getElementById("transfer_center").style.display = "flex";
+
+    const amount = document.getElementById("amount").value;
+    const address = document.getElementById("address").value;
+
+    //add space in front of private key
+    //account two
+    const private_key = "dd98bf713a16a0a246f8cabfc2a195293e1b6b0749be560f140dbcc36ccd1039";
+
+    //account three
+    const testAccount = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8";
+
+    //PROVIDER
+    const provider = new ethers.providers.JsonRpcProvider(providerURL);
+};
 
 function checkBalance(){};
 
