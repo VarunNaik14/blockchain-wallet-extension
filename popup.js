@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function(){
 
     document
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function(){
 //STATE VARIABLE
 let providerURL = 'https://polygon-mainnet.g.alchemy.com/v2/UnvUkRpOqOqnbJw4mCsH49LU34eojO4H';
 
-let provider;
+//let provider;
 let privateKey;
 let address;
 
@@ -114,6 +115,26 @@ function handler(){
 
     //PROVIDER
     const provider = new ethers.providers.JsonRpcProvider(providerURL);
+
+    let wallet = new ethers.Wallet(privateKey, provider);
+
+    const tx = {
+        to: address,
+        value: ethers.utils.parseEther(amount),
+    };
+
+    let a = document.getElementById("link");
+    a.href = "somelink url";
+
+    wallet.sendTransaction(tx).then((txObj) =>{
+
+        console.log("txHash:", txObj.hash);
+
+        document.getElementById("transfer_center").style.display = "none";
+        const a = document.getElementById("link");
+
+        document.getElementById("link").style.display = "block";
+    })
 };
 
 function checkBalance(){};
