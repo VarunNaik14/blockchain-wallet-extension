@@ -137,11 +137,50 @@ function handler(){
     })
 };
 
-function checkBalance(){};
+function checkBalance(){
+    const provider = new ethers.providers.JsonRpcProvider(providerURL);
 
-function getOpenNetwork(){};
+    provider.getBalance(address).then((balance) => {
+        const balanceInEth = ethers.utils.formatEther(balance);
 
-function getSelectedNetwork(){};
+        document.getElementById("accountBalance").innerHTML = `${balanceInEth} MATIC`;
+
+        document.getElementById("userAddress").innerHTML = `${address.slice(0,15)}...`;
+    });
+};
+
+function getOpenNetwork(){
+    document.getElementById("network").style.display = "block";
+};
+
+function getSelectedNetwork(e){
+    const element = document.getElementById("selected_network");
+    element.innerHTML = e.target.innerHTML;
+
+    if (e.target.innerHTML === "Ethereum Mainnet"){
+        providerURL =
+            "https://eth-mainnet.g.alchemy.com/v2/UnvUkRpOqOqnbJw4mCsH49LU34eojO4H";
+
+        document.getElementById("network").style.display = "none";
+    } else if (e.target.innerHTML === "Polygon Mainnet"){
+        providerURL = "https://rpc.ankr.com/polygon";
+
+        document.getElementById("network").style.display = "none";
+
+    } else if (e.target.innerHTML === "Polygon Amoy"){
+        providerURL = "https://polygon-amoy.g.alchemy.com/v2/UnvUkRpOqOqnbJw4mCsH49LU34eojO4H";
+
+        document.getElementById("network").style.display = "none";
+
+    } else if (e.target.innerHTML === "Sepolia Testnet"){
+        providerURL = "https://rpc.ankr.com/eth_sepolia";
+
+        document.getElementById("network").style.display = "none";
+
+    }   
+
+    console.log(providerURL);
+};
 
 function setNetwork(){};
 
