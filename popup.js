@@ -182,15 +182,57 @@ function getSelectedNetwork(e){
     console.log(providerURL);
 };
 
-function setNetwork(){};
+function setNetwork(){
+    document.getElementById("network").style.display = "none";
+};
 
-function loginUser(){};
+function loginUser(){
+    document.getElementById("createAccount").style.display = "none";
+    document.getElementById("Login").style.display = "block";
+};
 
-function createUser(){};
+function createUser(){
+    document.getElementById("createAccount").style.display = "block";
+    document.getElementById("Login").style.display = "none";
+};
 
-function openCreate(){};
+function openCreate(){
 
-function signUp(){};
+    document.getElementById("createAccount").style.display = "none";
+    document.getElementById("create_popUp").style.display = "block";
+};
+
+function signUp(){
+
+    const name = document.getElementById("sign_up_name").value; 
+    const email = document.getElementById("sign_up_email").value; 
+    const password = document.getElementById("sign_up_password").value; 
+    const passwordConfirm = document.getElementById("sign_up_passwordConfirm").value; 
+
+    document.getElementById("field").style.display = 'none';
+    document.getElementById("center").style.display = 'block';
+
+    const wallet = ethers.Wallet.createRandom();
+
+    if(wallet.address) {
+        console.log(wallet);
+    }
+
+    //API CALL
+
+    const url = "http://localhost:3000/api/v1/user/signup"
+    
+    const data = {
+        name: name,
+        email: email,
+        password: password,
+        passwordConfirm: passwordConfirm,
+        address: wallet.address,
+        private_key: wallet.privateKey,
+        mnemonic: wallet.mnemonic.phrase,
+    };
+
+};
 
 function login(){};
 
