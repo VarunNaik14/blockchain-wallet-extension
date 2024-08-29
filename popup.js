@@ -261,15 +261,61 @@ function signUp(){
     }).catch(err => console.log(err));
 };
 
-function login(){};
+function login(){
+    document.getElementById("login_form").style.display = "none";
+    document.getElementById("center").style.display = "block";
 
-function logout(){};
+    const email = document.getElementById("login_email").value;
+    const password = document.getElementById("login_password").value;
 
-function openTransfer(){};
+    //API CALL
+    const url = "http://localhost:3000/api/v1/user/login";
+    const data = {
+        email: email,
+        password: password,
+    };
 
-function goBack(){};
+    fetch(url,{
+        method: 'POST',
+        handlers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).then((response) => { response.json()}).then((result) => {
+        console.log(result)
+        const userWallet = {
+            address: result.data.user.address,
+            private_key: result.data.user.private_key,
+            mnemonic: result.data.user.mnemonic,
+        };
 
-function openImport(){};
+        const jsonObj = JSON.stringify(userWallet);
+        localStorage.setItem("userWallet", jsonObj);
+        window.location.reload();
+    })
+    .catch(error => console.log(error))
+};
+
+function logout(){
+    localStorage.removeItem("userWallet");
+    window.location.reload();
+};
+
+function openTransfer(){
+    document.getElementById("transfer_from").style.display = "block";
+    document.getElementById()
+};
+
+function goBack(){
+    document.getElementById("transfer_from").style.display = "block";
+    document.getElementById("home").style.display = "none";
+
+};
+
+function openImport(){
+    document.getElementById("import_token").style.display = "block";
+    document.getElementById("home").style.display = "none";
+};
 
 function importGoBack(){};
 
