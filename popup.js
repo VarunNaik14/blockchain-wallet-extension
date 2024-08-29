@@ -317,13 +317,25 @@ function openImport(){
     document.getElementById("home").style.display = "none";
 };
 
-function importGoBack(){};
+function importGoBack(){
+    document.getElementById("import_token").style.display = "none";
+    document.getElementById("home").style.display = "block";
+};
 
-function openActivity(){};
+function openActivity(){
+    document.getElementById("activity").style.display = "block";
+    document.getElementById("assets").style.display = "none";
+};
 
-function openAssets(){};
+function openAssets(){
+    document.getElementById("activity").style.display = "none";
+    document.getElementById("assets").style.display = "block";
+};
 
-function goHomePage(){};
+function goHomePage(){
+    document.getElementById("create_popUp").style.display = "none";
+    document.getElementById("home").style.display = "none";
+};
 
 function openImportModel(){};
 
