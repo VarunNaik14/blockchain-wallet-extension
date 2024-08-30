@@ -337,11 +337,43 @@ function goHomePage(){
     document.getElementById("home").style.display = "none";
 };
 
-function openImportModel(){};
+function openImportModel(){
+    document.getElementById("import_account").style.display = "block";
+    document.getElementById("home").style.display = "none";
+};
 
-function closeImportModel(){};
+function closeImportModel(){
+    document.getElementById("import_account").style.display = "none";
+    document.getElementById("home").style.display = "block";
+};
 
-function addToken(){};
+function addToken(){
+    const address = document.getElementById("token_address").value;
+    const name = document.getElementById("token_name").value;
+    const symbol = document.getElementById("token_symbol").value;
+
+    //API CALL
+
+    const url = "http://localhost:3000/api/v1/tokens/createtoken";
+    const data = {
+        name: name,
+        address: address,
+        symbol: symbol,
+    };
+
+    fetch(url, {
+        method: "POST",
+        handlers: {
+            "Content-Type": "applications/json",
+        },
+
+        body: JSON.stringify(data)
+    }).then((response) => {response.json()}).then((result) => {
+        console.log(result);
+        window.location.reload();
+    }).catch( (error) => console.log(error))   
+
+};
 
 function addAccount(){};
 
