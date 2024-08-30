@@ -375,7 +375,36 @@ function addToken(){
 
 };
 
-function addAccount(){};
+function addAccount(){
+    const privateKey = document.getElementById("add_account_private_key").value;
+
+    const provider = new ethers.providers.JsonRpcProvider(providerURL);
+
+    let wallet = new ethers.Wallet(privateKey, provider);
+
+    console.log(wallet);
+
+    const url = "http://localhost:3000/api/v1/account/createaccount";
+
+    const data = {
+        privateKey: privateKey,
+        address: wallet.address,
+    };
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    }).then((response) => response.json())
+    .then((result) =>{
+        console.log(result);
+    })
+    .catch((error) => {
+        console.log(error)
+    });
+};
 
 function myFunction(){};
 
