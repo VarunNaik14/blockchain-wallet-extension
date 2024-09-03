@@ -347,7 +347,7 @@ function closeImportModel(){
     document.getElementById("home").style.display = "block";
 };
 
-function zZZXZZZZXZaddToken(){
+function addToken(){
     const address = document.getElementById("token_address").value;
     const name = document.getElementById("token_name").value;
     const symbol = document.getElementById("token_symbol").value;
@@ -418,6 +418,55 @@ function myFunction(){
 
         checkBalance(parsedObj.address);
     }
+
+    const tokenRender = document.querySelector(".assets");
+    const accountRender = document.querySelector(".accountList");
+
+    const url = "http://localhost:3000/api/v1/tokens/alltoken";
+    fetch(url).then((response) => response.json()).then((data) =>{
+        let elements = "";
+
+        data.data.tokens.map((token) =>(
+            elements += `
+            <div class ="assets_item">
+                <img class ="assets_item_img"
+                src="./assets/theblockchaincoders.png"
+                alt =""
+                />
+
+                <span>${token.address.slice(0,15)}...</span>
+                <span>${token.symbol}</span>
+
+            </div>
+            `
+        ));
+
+        tokenRender.innerHTML = elements;
+
+    })
+    .catch(error => console.log(error));
+
+    fetch("http://localhost:3000/api/v1/account/allacount").then((response) => {
+        response.json()})
+        .then(data =>{
+            let accounts ="";
+
+            data.data.accounts.map((account, i) =>
+            
+            account += `
+            <div class="lists">
+            <p> ${i + 1} </p>
+            <p class="accountValue" data-address = ${account.address} data-privateKey =${account.privateKey}>
+             ${account.address.slice(0,25)}...
+             </p>
+            </div>
+            `
+            )
+
+            accountRender.innerHTML = accounts
+        }).catch(error => console.log(error))
+
+        console.log(privateKey);
 };
 
 function copyAddress(){};
