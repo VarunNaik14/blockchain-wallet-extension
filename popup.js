@@ -469,6 +469,27 @@ function myFunction(){
         console.log(privateKey);
 };
 
-function copyAddress(){};
+function copyAddress(){
+    navigator.clipboard.writeText(address);
+};
 
-function changeAccount(){};
+function changeAccount(){
+    const data = document.querySelector(".accountValue");
+    const address = data.getAttribute("data-address");
+    const privateKey = data.getAttribute("data-privateKey");
+    
+    console.log(privateKey,address);
+
+    const userWallet = {
+        address: address, 
+        private_key: privateKey,
+        mnemonic: "Changed",
+    };
+
+    const jsonObj = JSON.stringify(userWallet);
+    localStorage.setItem("userWallet", jsonObj);
+
+    window.location.reload();
+};
+
+window.onload = myFunction;
