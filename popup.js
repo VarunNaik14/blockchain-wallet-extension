@@ -347,7 +347,7 @@ function closeImportModel(){
     document.getElementById("home").style.display = "block";
 };
 
-function addToken(){
+function zZZXZZZZXZaddToken(){
     const address = document.getElementById("token_address").value;
     const name = document.getElementById("token_name").value;
     const symbol = document.getElementById("token_symbol").value;
@@ -406,7 +406,19 @@ function addAccount(){
     });
 };
 
-function myFunction(){};
+function myFunction(){
+    const str = localStorage.getItem("userWallet");
+    const parsedObj = JSON.parse(str);
+    if(parsedObj.address){
+        document.getElementById("LoginUser").style.display = "none";
+        document.getElementById("home").style.display = "block";
+
+        privateKey = parsedObj.private_key;
+        address = parsedObj.address;
+
+        checkBalance(parsedObj.address);
+    }
+};
 
 function copyAddress(){};
 
