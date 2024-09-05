@@ -309,7 +309,7 @@ function openTransfer(){
 function goBack(){
     document.getElementById("transfer_from").style.display = "block";
     document.getElementById("home").style.display = "none";
-
+       
 };
 
 function openImport(){
