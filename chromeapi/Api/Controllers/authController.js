@@ -84,5 +84,46 @@ exports.allToken = async (req, res, next) => {
 };
 
 exports.addToken = async (req, res, next) => {
-    
-}
+    const createToken = await Token.create({
+        name: req.body.name,
+        address: req.body.address,
+        symbol: req.body.symbol,
+    });
+
+    // SEND RESPONSE
+    res.status(201).json({
+        status: "success",
+        data: {
+            createToken,
+        },
+    });
+
+};
+
+exports.allAccount = async (req,res,next) => {
+    const accounts = await Account.find();
+
+    // SEND RESPONSE
+
+    res.status(200).json({
+        status: "success",
+        data:{
+            accounts,
+        },
+    });
+};
+
+exports.createAccount = async (req, res, next) => {
+    const account = await Account.create({
+        privateKey: req.body.privateKey,
+        address: req.body.address,
+    });
+
+    // SEND RESPONSE
+    res.status(201).json({
+        status: "success",
+        data: {
+            account,
+        },
+    });
+};
