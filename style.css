@@ -1,0 +1,49 @@
+/* //BODY */
+
+body {
+    width: 22rem;
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.header_log img {
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+
+}
+
+#heading {
+    text-align: center;
+    margin: 2em;
+    color: rgb(0, 255, 200);
+    font-size: 1.2em;
+}
+
+.header_network p {
+    border: 1px solid #00642f;
+    color: #00542f;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3rem;
+    cursor: pointer;
+
+}
