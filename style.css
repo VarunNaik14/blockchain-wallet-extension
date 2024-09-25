@@ -47,3 +47,14 @@ body {
     cursor: pointer;
 
 }
+
+/* //NETWORK */
+
+.network {
+    display: none;
+    position: absolute;
+    background-color: #171717;
+    width: 100%;
+    right: 0;
+    text-align: center;
+}
