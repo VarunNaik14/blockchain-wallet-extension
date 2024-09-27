@@ -379,3 +379,46 @@ textarea {
     animation-delay: -0.1s;
 }
 
+/* //HOME PAGE */
+
+.home{
+    margin: 0 auto;
+    background-color: #171717;
+    text-align: center;
+    padding: 1rem 2rem;
+    display: none;
+}
+
+.home_header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.home_header_img {
+    margin-top: 1rem;
+    width: 50px;
+    height: 50px
+}
+
+.home_features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem
+}
+
+.home_features_img{
+    margin-top: 1rem;
+    width: 20px;
+    height: 20px;
+}
+
+.home_feature_item > p {
+    line-height: 0;
+    color: #00ff75;
+}
+
+.home_tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
