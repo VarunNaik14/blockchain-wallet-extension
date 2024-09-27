@@ -122,4 +122,18 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.home_screen_login {}
+.home_screen_login {
+    margin: 0 auto;
+    background-color: #171717;
+    text-align: center;
+    padding: 2rem;
+    display: block;
+}
+
+.create_popUp {
+    margin: 0 auto;
+    background-color: #171717;
+    text-align: center;
+    padding: 2rem;
+    display: block;
+}
