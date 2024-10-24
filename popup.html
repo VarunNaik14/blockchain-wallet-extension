@@ -274,6 +274,7 @@
           </button>
 
           <button id="goHomePage" class="button3 connectWallet">Go Back</button>
+
       <!-- END OF CREATE POP UP -->
 
       <!-- LOGIN COMPONENTS -->
@@ -462,13 +463,89 @@
     <!-- END OF IMPORT COMPONENT -->
     
     <!-- IMPORT ACCOUNT -->
-     
+      <div class="home" id="home">
+        <div class="home_header">
+          <div>
+            <p id="userAddress">connecting...</p>
+          </div>
+          <div>
+            <p>Active</p>
+          </div>
+        </div>
+
+        <img src="./assets/logo.png"
+          class="home_header_img"
+          alt="" />
+      
+        <h1 id="accountBalance">0.00 POL</h1>
+        
+        <div class="home_features">
+
+          <div class="home_feature_item">
+            <img src="./assets/buy.png"
+              class="home_feature_img" alt="" />
+              <p class="text">Buy</p>
+          </div>
+
+          <div class="home_feature_item">
+            <img src="./assets/send.png"
+              class="home_feature_img" alt="" />
+              <p class="text">Send</p>
+          </div>
+
+          <div class="home_feature_item">
+            <img src="./assets/user.png"
+              class="home_feature_img" alt="" />
+              <p class="text">Account</p>
+          </div>
+
+          <div class="home_feature_item">
+            <img src="./assets/import.png"
+              class="home_feature_img" alt="" />
+              <p class="text">Import</p>
+          </div>
+        </div>
+
+        <div class="home_tabs">
+          <p id="open_assets">Assets</p>
+          <p id="logout">Logout</p>
+          <p id="open_activity">Activity</p>
+
+          </div>
+        
+        <p class="space"></p>
+        <p class="space"></p>
+
+        <!-- //ASSETS -->
+         <div class="assets" id="assets"></div>
+
+        <!-- //ACTIVITY ADD DATABASE TO MAKE DYNAMIC -->
+         <div class="activity" id="activity">
+          <div class="assets_item">
+            <img src="./assets/logo.png"
+              class="assets_item_img" alt="" />
+            
+            <span>82j884289a453....</span>
+            <span>14.3 POL</span>
+          </div>
+         </div>
+
+         <div class="activity" id="activity">
+          <div class="assets_item">
+            <img src="./assets/logo.png"
+              class="assets_item_img" alt="" />
+            
+            <span>82j884289a453....</span>
+            <span>14.3 POL</span>
+          </div>
+         </div>
+    </div>
      <!-- END OF IMPORT ACCOUNT -->
       </div>
-
     </div>
 
-
-    <!-- <script src="popup.js"></script> -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+      type="application/javascript"></script>
+    <script src="popup.js"></script>
   </body>
 </html>
