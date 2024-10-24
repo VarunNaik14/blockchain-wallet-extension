@@ -62,6 +62,9 @@ document.addEventListener("DOMContentLoaded", function(){
         .addEventListener("click",openImport);
 
     document
+        .getElementById("goBack_import")
+        .addEventListener("click",importGoBack);
+    document
         .getElementById("open_assets")
         .addEventListener("click",openAssets);
     
@@ -132,7 +135,7 @@ function handler(){
 
         document.getElementById("transfer_center").style.display = "none";
         const a = document.getElementById("link");
-
+        a.href = `https://amoy.polygonscan.com/tx/${txObj.hash}`;
         document.getElementById("link").style.display = "block";
     })
 };
@@ -234,7 +237,7 @@ function signUp(){
 
     fetch(url, {
         method: "POST",
-        handlers: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
@@ -277,7 +280,7 @@ function login(){
 
     fetch(url,{
         method: 'POST',
-        handlers: {
+        headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
@@ -302,12 +305,12 @@ function logout(){
 };
 
 function openTransfer(){
-    document.getElementById("transfer_from").style.display = "block";
+    document.getElementById("transfer_form").style.display = "block";
     document.getElementById()
 };
 
 function goBack(){
-    document.getElementById("transfer_from").style.display = "block";
+    document.getElementById("transfer_form").style.display = "block";
     document.getElementById("home").style.display = "none";
        
 };
@@ -363,7 +366,7 @@ function addToken(){
 
     fetch(url, {
         method: "POST",
-        handlers: {
+        headers: {
             "Content-Type": "applications/json",
         },
 
@@ -409,7 +412,7 @@ function addAccount(){
 function myFunction(){
     const str = localStorage.getItem("userWallet");
     const parsedObj = JSON.parse(str);
-    if(parsedObj.address){
+    if(parsedObj?.address){
         document.getElementById("LoginUser").style.display = "none";
         document.getElementById("home").style.display = "block";
 
