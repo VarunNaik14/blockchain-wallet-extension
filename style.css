@@ -127,7 +127,8 @@ body {
     background-color: #171717;
     text-align: center;
     padding: 2rem;
-    display: block;
+    /* display: block; */
+    display: none;
 }
 
 .create_popUp {
@@ -143,7 +144,7 @@ body {
 /* //Form */
 
 .transfer_form {
-    display: none;
+    /* display: none; */
 }
 
 .form {
