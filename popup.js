@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function(){
 
     document
@@ -153,7 +152,15 @@ function checkBalance(){
 };
 
 function getOpenNetwork(){
-    document.getElementById("network").style.display = "block";
+    if(document.getElementById("network").style.display == "none"){
+        document.getElementById("network").style.display = "block";
+    }
+
+    else{
+        document.getElementById("network").style.display = "none";
+    }
+
+
 };
 
 function getSelectedNetwork(e){
@@ -191,12 +198,12 @@ function setNetwork(){
 
 function loginUser(){
     document.getElementById("createAccount").style.display = "none";
-    document.getElementById("Login").style.display = "block";
+    document.getElementById("LoginUser").style.display = "block";
 };
 
 function createUser(){
     document.getElementById("createAccount").style.display = "block";
-    document.getElementById("Login").style.display = "none";
+    document.getElementById("LoginUser").style.display = "none";
 };
 
 function openCreate(){
@@ -302,7 +309,7 @@ function login(){
 function logout(){
     localStorage.removeItem("userWallet");
     window.location.reload();
-};
+};    
 
 function openTransfer(){
     document.getElementById("transfer_form").style.display = "block";
