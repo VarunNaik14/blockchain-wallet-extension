@@ -9,6 +9,8 @@ const accountRouter = require("./Api/Routers/accountRouter");
 const app = express();
 app.use(express.json({limit: "100kb"}));
 
+
+
 app.use(cors());
 app.options("*", cors());
 
