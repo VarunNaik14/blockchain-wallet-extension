@@ -263,6 +263,8 @@ function signUp(){
                 mnemonic: wallet.mnemonic.phrase,
             };
 
+            console.log("New Wallet Created w/ Signup: ", userWallet);
+
             const jsonObj = JSON.stringify(userWallet);
             localStorage.setItem("userWallet", jsonObj);
             
@@ -420,6 +422,7 @@ function addAccount(){
 function myFunction(){
     const str = localStorage.getItem("userWallet");
     const parsedObj = JSON.parse(str);
+
     if(parsedObj?.address){
         document.getElementById("LoginUser").style.display = "none";
         document.getElementById("home").style.display = "block";

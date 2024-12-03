@@ -5,8 +5,13 @@ const userRouter = require("./Api/Routers/userRouter");
 const tokenRouter = require("./Api/Routers/tokenRouter");
 const accountRouter = require("./Api/Routers/accountRouter");
 
+const logger = require("./middleware/logger.js");
+
+
 //MIDDLEWARE
 const app = express();
+
+app.use(logger);
 app.use(express.json({limit: "100kb"}));
 
 
