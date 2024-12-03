@@ -406,10 +406,10 @@ textarea {
 .home_features {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem
+    gap: 1rem;
 }
 
-.home_features_img{
+.home_feature_img{
     margin-top: 1rem;
     width: 20px;
     height: 20px;

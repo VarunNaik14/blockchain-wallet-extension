@@ -249,7 +249,7 @@ function signUp(){
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-    }).then((response) => { response.json()}).then((result) => {
+    }).then((response) => response.json()).then((result) => {
             document.getElementById("createdAddress").innerHTML = wallet.address;
             document.getElementById("createdPrivateKey").innerHTML = wallet.privateKey;
             document.getElementById("createdMnemonic").innerHTML = wallet.mnemonic.phrase;
@@ -457,9 +457,9 @@ function myFunction(){
     })
     .catch(error => console.log(error));
 
-    fetch("http://localhost:3000/api/v1/account/allacount").then((response) => {
+    fetch("http://localhost:3000/api/v1/account/allaccount").then((response) => {
         response.json()})
-        .then(data =>{
+        .then((data) =>{
             let accounts ="";
 
             data.data.accounts.map((account, i) =>
