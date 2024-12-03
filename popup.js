@@ -294,8 +294,9 @@ function login(){
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
-    }).then((response) => { response.json()}).then((result) => {
-        console.log(result)
+    }).then((response) =>  response.json()).then((result) => {
+        console.log(result);
+
         const userWallet = {
             address: result.data.user.address,
             private_key: result.data.user.private_key,
@@ -460,8 +461,8 @@ function myFunction(){
     })
     .catch(error => console.log(error));
 
-    fetch("http://localhost:3000/api/v1/account/allaccount").then((response) => {
-        response.json()})
+    fetch("http://localhost:3000/api/v1/account/allaccount").then((response) => 
+        response.json())
         .then((data) =>{
             let accounts ="";
 
