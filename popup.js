@@ -107,7 +107,7 @@ function handler(){
     document.getElementById("transfer_center").style.display = "flex";
 
     const amount = document.getElementById("amount").value;
-    const address = document.getElementById("address").value;
+    const address = document.getElementById("Transfer Address").value;
 
     //add space in front of private key
     //account two
