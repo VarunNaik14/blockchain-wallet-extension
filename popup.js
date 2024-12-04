@@ -143,8 +143,13 @@ function handler(){
 function checkBalance(){
     const provider = new ethers.providers.JsonRpcProvider(providerURL);
 
+    console.log("Provider URL: ", providerURL);
+
     provider.getBalance(address).then((balance) => {
+
         const balanceInEth = ethers.utils.formatEther(balance);
+
+        console.log("Account Balance: ",balanceInEth);
 
         document.getElementById("accountBalance").innerHTML = `${balanceInEth} MATIC`;
 
@@ -190,6 +195,7 @@ function getSelectedNetwork(e){
 
     }   
 
+    checkBalance();
     console.log(providerURL);
 };
 
@@ -317,12 +323,12 @@ function logout(){
 
 function openTransfer(){
     document.getElementById("transfer_form").style.display = "block";
-    document.getElementById()
+    document.getElementById("home").style.display = "none";
 };
 
 function goBack(){
-    document.getElementById("transfer_form").style.display = "block";
-    document.getElementById("home").style.display = "none";
+    document.getElementById("transfer_form").style.display = "none";
+    document.getElementById("home").style.display = "block";
        
 };
 
