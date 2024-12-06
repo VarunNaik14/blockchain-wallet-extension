@@ -133,3 +133,18 @@ exports.createAccount = async (req, res, next) => {
     });
 };
 
+/*
+
+exports.deleteAllAccounts = async (req,res,next) =>{
+    await Account.deleteMany({ address: /^0x/ });
+    const accounts = await Account.find();
+    console.log(accounts);
+    res.status(201).json({
+        status: "success",
+        data: {
+            accounts
+        }
+    })
+}
+
+*/
