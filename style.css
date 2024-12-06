@@ -477,3 +477,7 @@ textarea {
     border-bottom: 1px solid #00ff75;
     align-items: center;
 }
+
+#accountList{
+    -webkit-text-fill-color: rgb(0, 255, 200);
+}

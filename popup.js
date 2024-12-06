@@ -1,13 +1,12 @@
-
 document.addEventListener("DOMContentLoaded", function(){
-
-    document
-        .getElementById("accountList")
-        .addEventListener("click",changeAccount);
+    
+    // document
+    //     .getElementById("accountList")
+    //     .addEventListener("click",changeAccount);
 
     document
         .getElementById("userAddress")
-        .addEventListener("click",copyAddress);
+        .addEventListener("click", copyAddress);
 
     document
         .getElementById("transferFund")
@@ -91,9 +90,7 @@ document.addEventListener("DOMContentLoaded", function(){
     document
         .getElementById("add_new_account")
         .addEventListener("click",addAccount);    
-
 })
-
 
 //STATE VARIABLE
 let providerURL = 'https://polygon-mainnet.g.alchemy.com/v2/UnvUkRpOqOqnbJw4mCsH49LU34eojO4H';
@@ -148,8 +145,6 @@ function checkBalance(){
     provider.getBalance(address).then((balance) => {
 
         const balanceInEth = ethers.utils.formatEther(balance);
-
-        console.log("Account Balance: ",balanceInEth);
 
         document.getElementById("accountBalance").innerHTML = `${balanceInEth} MATIC`;
 
@@ -419,11 +414,14 @@ function addAccount(){
         body: JSON.stringify(data),
     }).then((response) => response.json())
     .then((result) =>{
+
         console.log(result);
     })
     .catch((error) => {
         console.log(error)
     });
+
+    // location.reload();
 };
 
 function myFunction(){
@@ -469,22 +467,32 @@ function myFunction(){
 
     fetch("http://localhost:3000/api/v1/account/allaccount").then((response) => 
         response.json())
-        .then((data) =>{
+        .then((data) => {
             let accounts ="";
 
-            data.data.accounts.map((account, i) =>
-            
-            account += `
-            <div class="lists">
-            <p> ${i + 1} </p>
-            <p class="accountValue" data-address = ${account.address} data-privateKey =${account.privateKey}>
-             ${account.address.slice(0,25)}...
-             </p>
-            </div>
-            `
-            )
+            data.data.accounts.map((account, i) => {
+                accounts += `
+                <div class="lists" data-address="${account.address}" data-privatekey="${account.privateKey}" >
+                <p> ${i + 1} </p>
+                <p class="accountValue">
+                 ${account.address.slice(0,25)}...
+                 </p>
+                </div>
+                `
+            })
 
             accountRender.innerHTML = accounts
+
+            document.querySelectorAll('.lists').forEach(list => {
+
+                list.addEventListener('click', (event) => {
+                    const accountAddress = event.currentTarget.getAttribute('data-address');
+                    const accountPrivateKey = event.currentTarget.getAttribute('data-privatekey');
+                    changeAccount(accountAddress,accountPrivateKey);}
+                );
+
+            })
+
         }).catch(error => console.log(error))
 
         console.log(privateKey);
@@ -494,12 +502,9 @@ function copyAddress(){
     navigator.clipboard.writeText(address);
 };
 
-function changeAccount(){
-    const data = document.querySelector(".accountValue");
-    const address = data.getAttribute("data-address");
-    const privateKey = data.getAttribute("data-privateKey");
-    
-    console.log(privateKey,address);
+function changeAccount(address,privateKey) {
+
+    console.log('changeAccount ', privateKey );
 
     const userWallet = {
         address: address, 
@@ -511,6 +516,6 @@ function changeAccount(){
     localStorage.setItem("userWallet", jsonObj);
 
     window.location.reload();
-};
+}
 
 window.onload = myFunction;
