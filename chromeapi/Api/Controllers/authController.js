@@ -89,6 +89,8 @@ exports.allToken = async (req, res, next) => {
 };
 
 exports.addToken = async (req, res, next) => {
+
+    console.log(req.body);
     const createToken = await Token.create({
         name: req.body.name,
         address: req.body.address,
@@ -143,6 +145,20 @@ exports.deleteAllAccounts = async (req,res,next) =>{
         status: "success",
         data: {
             accounts
+        }
+    })
+}
+
+
+
+exports.deleteAllTokens = async (req,res,next) =>{
+    await Token.deleteMany({ __v: 0 });
+    const tokens = await Token.find();
+    console.log(tokens);
+    res.status(201).json({
+        status: "success",
+        data: {
+            tokens
         }
     })
 }
