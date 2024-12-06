@@ -379,7 +379,7 @@ function addToken(){
     fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "applications/json",
+            "Content-Type": "application/json",
         },
 
         body: JSON.stringify(data)
@@ -421,7 +421,6 @@ function addAccount(){
         console.log(error)
     });
 
-    // location.reload();
 };
 
 function myFunction(){
@@ -445,7 +444,9 @@ function myFunction(){
     fetch(url).then((response) => response.json()).then((data) =>{
         let elements = "";
 
-        data.data.tokens.map((token) =>(
+        data.data.tokens.map((token) =>{
+            console.log(token);
+            (
             elements += `
             <div class ="assets_item">
                 <img class ="assets_item_img"
@@ -458,7 +459,7 @@ function myFunction(){
 
             </div>
             `
-        ));
+        )});
 
         tokenRender.innerHTML = elements;
 
