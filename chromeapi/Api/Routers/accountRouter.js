@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/allaccount", authController.allAccount);
 router.post("/createaccount", authController.createAccount);
 
-/*
-router.delete("/deleteaccount", authController.deleteAllAccounts);
-*/
+
+// router.delete("/deleteaccount", authController.deleteAllAccounts);
+
 module.exports = router;
