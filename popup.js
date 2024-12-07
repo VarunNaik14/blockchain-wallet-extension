@@ -487,22 +487,24 @@ function myFunction(){
         let elements = "";
 
         data.data.tokens.map((token) =>{
+            if(token.provider_url === providerURL){
+                (
+                    elements += `
+                    <div class ="assets_item">
+                        <img class ="assets_item_img"
+                        src="./assets/logo.png"
+                        alt =""
+                        />
 
-            checkTokenBalance(token.address);
-            (
-            elements += `
-            <div class ="assets_item">
-                <img class ="assets_item_img"
-                src="./assets/logo.png"
-                alt =""
-                />
-
-                <span>${token.address.slice(0,15)}...</span>
-                <span>${token.symbol}</span>
-
-            </div>
-            `
-        )});
+                        <span>${checkTokenBalance(token.address)} </span>
+                        <span>${token.address.slice(0,15)}...</span>
+                        <span>${token.symbol}</span>
+        
+                    </div>
+                    `
+                )
+            }
+        });
 
         tokenRender.innerHTML = elements;
 
