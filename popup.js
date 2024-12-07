@@ -171,9 +171,13 @@ function checkTokenBalance(tokenAddress){
 
     const contract = new ethers.Contract(tokenAddress, abi, provider);
 
-    console.log("Check Token Balance, ",contract);
+    // console.log("Check Token Balance, ",contract);
 
-    contract.balanceOf(address).toString().then((result) => console.log(result));
+    contract.balanceOf(address)
+    .then((result) => {
+        const formattedBalance = ethers.utils.formatUnits(result.toString(), 18);
+        console.log(formattedBalance);
+    });
 
 };
 
@@ -550,7 +554,7 @@ function changeAccount(address,privateKey) {
         .then(result => result.json())
         .then((data) =>{
 
-            const addressExists = data.data.accounts.some(account => account.address === wallet.address);
+            const addressExists = data.data.accounts.some(account => account.address === previousWallet.address);
 
             if(!addressExists){
 
@@ -597,7 +601,7 @@ function changeAccount(address,privateKey) {
                 localStorage.setItem("userWallet", jsonObj);
     
                 window.location.reload();   
-                
+
             }
         })
     
