@@ -402,6 +402,7 @@ function addToken(){
         name: name,
         address: address,
         symbol: symbol,
+        provider_url: providerURL,
     };
 
     fetch(url, {
