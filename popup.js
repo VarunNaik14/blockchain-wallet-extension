@@ -152,6 +152,31 @@ function checkBalance(){
     });
 };
 
+function checkTokenBalance(tokenAddress){
+
+    const abi = [
+        // Read-Only Functions
+        "function balanceOf(address owner) view returns (uint256)",
+        "function decimals() view returns (uint8)",
+        "function symbol() view returns (string)",
+    
+        // Authenticated Functions
+        "function transfer(address to, uint amount) returns (bool)",
+    
+        // Events
+        "event Transfer(address indexed from, address indexed to, uint amount)"
+    ];
+
+    const provider = new ethers.providers.JsonRpcProvider(providerURL);
+
+    const contract = new ethers.Contract(tokenAddress, abi, provider);
+
+    console.log("Check Token Balance, ",contract);
+
+    contract.balanceOf(address).toString().then((result) => console.log(result));
+
+};
+
 function getOpenNetwork(){
     if(document.getElementById("network").style.display == "none"){
         document.getElementById("network").style.display = "block";
@@ -296,7 +321,6 @@ function login(){
         },
         body: JSON.stringify(data)
     }).then((response) =>  response.json()).then((result) => {
-        console.log(result);
 
         const userWallet = {
             address: result.data.user.address,
@@ -397,29 +421,42 @@ function addAccount(){
 
     let wallet = new ethers.Wallet(privateKey, provider);
 
-    console.log(wallet);
+    fetch("http://localhost:3000/api/v1/account/allaccount")
+    .then(result => result.json())
+    .then((data) => {
 
-    const url = "http://localhost:3000/api/v1/account/createaccount";
+        const addressExists = data.data.accounts.some(account => account.address === wallet.address);
 
-    const data = {
-        privateKey: privateKey,
-        address: wallet.address,
-    };
+        if(addressExists){
+            alert('An Account with this key already exists');
+        }   
+        else{
 
-    fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    }).then((response) => response.json())
-    .then((result) =>{
+            const url = "http://localhost:3000/api/v1/account/createaccount";
 
-        console.log(result);
+            const data = {
+                privateKey: privateKey,
+                address: wallet.address,
+            };
+        
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            }).then((response) => response.json())
+            .then((result) =>{
+        
+                console.log(result);
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+        }
+
     })
-    .catch((error) => {
-        console.log(error)
-    });
 
 };
 
@@ -445,12 +482,13 @@ function myFunction(){
         let elements = "";
 
         data.data.tokens.map((token) =>{
-            console.log(token);
+
+            checkTokenBalance(token.address);
             (
             elements += `
             <div class ="assets_item">
                 <img class ="assets_item_img"
-                src="./assets/theblockchaincoders.png"
+                src="./assets/logo.png"
                 alt =""
                 />
 
@@ -505,18 +543,67 @@ function copyAddress(){
 
 function changeAccount(address,privateKey) {
 
-    console.log('changeAccount ', privateKey );
+    const previousWallet = JSON.parse(localStorage.getItem("userWallet"));
 
-    const userWallet = {
-        address: address, 
-        private_key: privateKey,
-        mnemonic: "Changed",
-    };
+    if(previousWallet?.address){
+        fetch("http://localhost:3000/api/v1/account/allaccount")
+        .then(result => result.json())
+        .then((data) =>{
 
-    const jsonObj = JSON.stringify(userWallet);
-    localStorage.setItem("userWallet", jsonObj);
+            const addressExists = data.data.accounts.some(account => account.address === wallet.address);
 
-    window.location.reload();
+            if(!addressExists){
+
+                const url = "http://localhost:3000/api/v1/account/createaccount";
+
+                const data = {
+                    privateKey: previousWallet.private_key,
+                    address: previousWallet.address,
+                };
+        
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(response => response.json())
+                .then((result) =>{
+
+                    const userWallet = {
+                        address: address, 
+                        private_key: privateKey,
+                        mnemonic: "Changed",
+                    };
+        
+                    const jsonObj = JSON.stringify(userWallet);
+                    localStorage.setItem("userWallet", jsonObj);
+        
+                    window.location.reload();   
+
+                })
+            }
+
+            else{
+
+                const userWallet = {
+                    address: address, 
+                    private_key: privateKey,
+                    mnemonic: "Changed",
+                };
+    
+                const jsonObj = JSON.stringify(userWallet);
+                localStorage.setItem("userWallet", jsonObj);
+    
+                window.location.reload();   
+                
+            }
+        })
+    
+    }
+
+
 }
 
 window.onload = myFunction;
