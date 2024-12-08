@@ -95,7 +95,7 @@ exports.addToken = async (req, res, next) => {
         name: req.body.name,
         address: req.body.address,
         symbol: req.body.symbol,
-        provider_url: req.body.symbol,
+        provider_url: req.body.provider_url,
     });
 
     // SEND RESPONSE
