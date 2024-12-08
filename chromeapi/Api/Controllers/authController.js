@@ -136,29 +136,29 @@ exports.createAccount = async (req, res, next) => {
     });
 };
 
-// exports.deleteAllAccounts = async (req,res,next) =>{
-//     await Account.deleteMany({ address: /^0x/ });
-//     const accounts = await Account.find();
-//     console.log(accounts);
-//     res.status(201).json({
-//         status: "success",
-//         data: {
-//             accounts
-//         }
-//     })
-// }
+exports.deleteAllAccounts = async (req,res,next) =>{
+    await Account.deleteMany({ address: /^0x/ });
+    const accounts = await Account.find();
+    console.log(accounts);
+    res.status(201).json({
+        status: "success",
+        data: {
+            accounts
+        }
+    })
+}
 
 
 
-// exports.deleteAllTokens = async (req,res,next) =>{
-//     await Token.deleteMany({ __v: 0 });
-//     const tokens = await Token.find();
-//     console.log(tokens);
-//     res.status(201).json({
-//         status: "success",
-//         data: {
-//             tokens
-//         }
-//     })
-// }
+exports.deleteAllTokens = async (req,res,next) =>{
+    await Token.deleteMany({ __v: 0 });
+    const tokens = await Token.find();
+    console.log(tokens);
+    res.status(201).json({
+        status: "success",
+        data: {
+            tokens
+        }
+    })
+}
 
