@@ -140,8 +140,6 @@ function handler(){
 function checkBalance(){
     const provider = new ethers.providers.JsonRpcProvider(providerURL);
 
-    console.log("Provider URL: ", providerURL);
-
     provider.getBalance(address).then((balance) => {
 
         const balanceInEth = ethers.utils.formatEther(balance);
@@ -465,8 +463,6 @@ function addAccount(){
 };
 
 function render(){
-
-    console.log("render called!");
     
     const tokenRender = document.querySelector(".assets");
     const accountRender = document.querySelector(".accountList");
