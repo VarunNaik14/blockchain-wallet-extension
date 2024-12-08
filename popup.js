@@ -169,12 +169,10 @@ function checkTokenBalance(tokenAddress){
 
     const contract = new ethers.Contract(tokenAddress, abi, provider);
 
-    // console.log("Check Token Balance, ",contract);
-
-    contract.balanceOf(address)
+    return contract.balanceOf(address)
     .then((result) => {
         const formattedBalance = ethers.utils.formatUnits(result.toString(), 18);
-        console.log(formattedBalance);
+        return formattedBalance;
     });
 
 };
@@ -462,39 +460,81 @@ function addAccount(){
 
 };
 
-function render(){
-    
+function  render(){
+
+    console.log('render ran!');
     const tokenRender = document.querySelector(".assets");
     const accountRender = document.querySelector(".accountList");
 
     const url = "http://localhost:3000/api/v1/tokens/alltoken";
-    fetch(url).then((response) => response.json()).then((data) =>{
+    fetch(url).then((response) => response.json()).then(async (data) =>{
         let elements = "";
 
-        data.data.tokens.map((token) =>{
+        await Promise.all(data.data.tokens.map(async (token) =>{
             if(token.provider_url === providerURL){
-                (
-                    elements += `
+                const tokenBalance = await checkTokenBalance(token.address);
+
+                console.log(tokenBalance);
+
+                elements += `
                     <div class ="assets_item">
                         <img class ="assets_item_img"
                         src="./assets/logo.png"
                         alt =""
                         />
 
-                        <span>${checkTokenBalance(token.address)} </span>
+                        <span>${tokenBalance} </span>
                         <span>${token.address.slice(0,15)}...</span>
                         <span>${token.symbol}</span>
         
                     </div>
-                    `
-                )
-            }
-        });
+                    `;
+            } 
+        }));
 
         tokenRender.innerHTML = elements;
 
     })
     .catch(error => console.log(error));
+
+    // console.log('render ran!');
+    // const tokenRender = document.querySelector(".assets");
+    // const accountRender = document.querySelector(".accountList");
+
+    // const url = "http://localhost:3000/api/v1/tokens/alltoken";
+    // fetch(url).then((response) => response.json()).then(async (data) =>{
+    //     let elements = "";
+
+    //     await data.data.tokens.map(async (token) =>{
+
+    //         if(token.provider_url === providerURL){
+
+    //             const tokenBalance = await checkTokenBalance(token.address);
+
+    //             console.log(tokenBalance);
+
+    //             (
+    //                 elements += `
+    //                 <div class ="assets_item">
+    //                     <img class ="assets_item_img"
+    //                     src="./assets/logo.png"
+    //                     alt =""
+    //                     />
+
+    //                     <span>${tokenBalance} </span>
+    //                     <span>${token.address.slice(0,15)}...</span>
+    //                     <span>${token.symbol}</span>
+        
+    //                 </div>
+    //                 `
+    //             )
+    //         } 
+    //     });
+
+    //     tokenRender.innerHTML = elements;
+
+    // })
+    // .catch(error => console.log(error));
 
     fetch("http://localhost:3000/api/v1/account/allaccount").then((response) => 
         response.json())
@@ -543,68 +583,6 @@ function myFunction(){
     }
 
     render();
-
-    // const tokenRender = document.querySelector(".assets");
-    // const accountRender = document.querySelector(".accountList");
-
-    // const url = "http://localhost:3000/api/v1/tokens/alltoken";
-    // fetch(url).then((response) => response.json()).then((data) =>{
-    //     let elements = "";
-
-    //     data.data.tokens.map((token) =>{
-    //         if(token.provider_url === providerURL){
-    //             (
-    //                 elements += `
-    //                 <div class ="assets_item">
-    //                     <img class ="assets_item_img"
-    //                     src="./assets/logo.png"
-    //                     alt =""
-    //                     />
-
-    //                     <span>${checkTokenBalance(token.address)} </span>
-    //                     <span>${token.address.slice(0,15)}...</span>
-    //                     <span>${token.symbol}</span>
-        
-    //                 </div>
-    //                 `
-    //             )
-    //         }
-    //     });
-
-    //     tokenRender.innerHTML = elements;
-
-    // })
-    // .catch(error => console.log(error));
-
-    // fetch("http://localhost:3000/api/v1/account/allaccount").then((response) => 
-    //     response.json())
-    //     .then((data) => {
-    //         let accounts ="";
-
-    //         data.data.accounts.map((account, i) => {
-    //             accounts += `
-    //             <div class="lists" data-address="${account.address}" data-privatekey="${account.privateKey}" >
-    //             <p> ${i + 1} </p>
-    //             <p class="accountValue">
-    //              ${account.address.slice(0,25)}...
-    //              </p>
-    //             </div>
-    //             `
-    //         })
-
-    //         accountRender.innerHTML = accounts
-
-    //         document.querySelectorAll('.lists').forEach(list => {
-
-    //             list.addEventListener('click', (event) => {
-    //                 const accountAddress = event.currentTarget.getAttribute('data-address');
-    //                 const accountPrivateKey = event.currentTarget.getAttribute('data-privatekey');
-    //                 changeAccount(accountAddress,accountPrivateKey);}
-    //             );
-
-    //         })
-
-    //     }).catch(error => console.log(error))
 
 };
 
