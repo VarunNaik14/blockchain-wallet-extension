@@ -474,12 +474,7 @@ function  render(){
 
     const url = "http://localhost:3000/api/v1/tokens/alltoken";
     fetch(url).then((response) => response.json()).then(async (data) =>{
-        let elements = `
-                    <div class= "assets_item_header"> 
-                        <span>Balance</span>
-                        <span>Address</span>
-                        <span>Symbol</span>
-                    </div>`;
+        let elements = "";
 
         await Promise.all(data.data.tokens.map(async (token) =>{
             if(token.provider_url === providerURL){
@@ -499,49 +494,19 @@ function  render(){
             } 
         }));
 
+        if(elements.length !== 0){
+            elements = `
+                    <div class= "assets_item_header"> 
+                        <span>Balance</span>
+                        <span>Address</span>
+                        <span>Symbol</span>
+                    </div>`.concat(elements);
+        }
+
         tokenRender.innerHTML = elements;
 
     })
     .catch(error => console.log(error));
-
-    // console.log('render ran!');
-    // const tokenRender = document.querySelector(".assets");
-    // const accountRender = document.querySelector(".accountList");
-
-    // const url = "http://localhost:3000/api/v1/tokens/alltoken";
-    // fetch(url).then((response) => response.json()).then(async (data) =>{
-    //     let elements = "";
-
-    //     await data.data.tokens.map(async (token) =>{
-
-    //         if(token.provider_url === providerURL){
-
-    //             const tokenBalance = await checkTokenBalance(token.address);
-
-    //             console.log(tokenBalance);
-
-    //             (
-    //                 elements += `
-    //                 <div class ="assets_item">
-    //                     <img class ="assets_item_img"
-    //                     src="./assets/logo.png"
-    //                     alt =""
-    //                     />
-
-    //                     <span>${tokenBalance} </span>
-    //                     <span>${token.address.slice(0,15)}...</span>
-    //                     <span>${token.symbol}</span>
-        
-    //                 </div>
-    //                 `
-    //             )
-    //         } 
-    //     });
-
-    //     tokenRender.innerHTML = elements;
-
-    // })
-    // .catch(error => console.log(error));
 
     fetch("http://localhost:3000/api/v1/account/allaccount").then((response) => 
         response.json())
