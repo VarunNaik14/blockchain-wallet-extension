@@ -112,6 +112,7 @@ body {
 .home h1,
 .home_tabs p,
 .assets_item span,
+.assets_item_header span,
 .lists p,
 .accountData p,
 .home_header p,
@@ -426,13 +427,20 @@ textarea {
 }
 
 /* //Assets */
+.assets_item_header{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    grid-area: 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid #e46a6a;
 
+}
 .assets_item {
     display: grid;
     grid-template-columns: repeat(3,1fr);
     align-items: center;
     grid-area: 2rem;
-    border-top: 1px solid #e46a6a;
     padding: 1rem 0;
 }
 

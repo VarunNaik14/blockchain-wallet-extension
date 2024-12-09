@@ -221,7 +221,7 @@ function getSelectedNetwork(e){
 };
 
 function setNetwork(){
-    document.getElementById("network").style.display = "none";
+    document.getElementById("network").style.display = "block";
 };
 
 function loginUser(){
@@ -468,7 +468,12 @@ function  render(){
 
     const url = "http://localhost:3000/api/v1/tokens/alltoken";
     fetch(url).then((response) => response.json()).then(async (data) =>{
-        let elements = "";
+        let elements = `
+                    <div class= "assets_item_header"> 
+                        <span>Balance</span>
+                        <span>Address</span>
+                        <span>Symbol</span>
+                    </div>`;
 
         await Promise.all(data.data.tokens.map(async (token) =>{
             if(token.provider_url === providerURL){
@@ -478,10 +483,6 @@ function  render(){
 
                 elements += `
                     <div class ="assets_item">
-                        <img class ="assets_item_img"
-                        src="./assets/logo.png"
-                        alt =""
-                        />
 
                         <span>${tokenBalance} </span>
                         <span>${token.address.slice(0,15)}...</span>
