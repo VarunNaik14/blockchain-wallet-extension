@@ -12,8 +12,15 @@ mongoose.connect(DB, {
     useFindAndModify: false,
 }).then(() => console.log("DB connection successful!"));
 
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-    console.log(`App running on port ${port}....`);
+// app.listen(port, () => {
+//     console.log(`App running on port ${port}....`);
+// });
+
+const port = process.env.PORT || 8080;
+console.log('PORT environment variable:', process.env.PORT);
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server is running on http://0.0.0.0:${port}`);
 });
