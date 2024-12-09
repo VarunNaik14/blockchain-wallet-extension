@@ -66,7 +66,9 @@ document.addEventListener("DOMContentLoaded", function(){
     document
         .getElementById("open_assets")
         .addEventListener("click",openAssets);
-    
+    document
+        .getElementById("open_buy")
+        .addEventListener("click", openBuy);
     document
         .getElementById("open_activity")
         .addEventListener("click",openActivity);
@@ -369,6 +371,10 @@ function openAssets(){
     document.getElementById("activity").style.display = "none";
     document.getElementById("assets").style.display = "block";
 };
+
+function openBuy(){
+    window.open("https://www.moonpay.com/buy", "_blank");
+}
 
 function goHomePage(){
     document.getElementById("create_popUp").style.display = "none";
