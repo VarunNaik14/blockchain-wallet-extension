@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "nodemon server.js",
-    "build": "next build",
+    "build": "npm install --production",
     "start": "node server.js",
-    "lint": "next lint"
+    "lint": "eslint"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
