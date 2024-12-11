@@ -1,15 +1,15 @@
 {
     "name": "blockchain-wallet-extension",
-    "desc": "Transfer funds to any wallet",
+    "description": "Transfer funds to any wallet",
     "version": "0.1.0",
     "manifest_version": 3,
     "action":{
         "default_popup": "popup.html",
-        "default_icon": "logo.png"
+        "default_icon": "./assets/logo.png"
 
     },
 
-    "permissions":["tabs, bookmarks, unlimitedStorage","nativeMessaging"]
+    "permissions":["tabs", "bookmarks", "unlimitedStorage","nativeMessaging"]
 
 
 
