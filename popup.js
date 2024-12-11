@@ -260,7 +260,7 @@ function signUp(){
 
     //API CALL
 
-    const url = "http://localhost:3000/api/v1/user/signup"
+    const url = "https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/user/signup"
     
     const data = {
         name: name,
@@ -309,7 +309,7 @@ function login(){
     const password = document.getElementById("login_password").value;
 
     //API CALL
-    const url = "http://localhost:3000/api/v1/user/login";
+    const url = "https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/user/login";
     const data = {
         email: email,
         password: password,
@@ -398,7 +398,7 @@ function addToken(){
 
     //API CALL
 
-    const url = "http://localhost:3000/api/v1/tokens/createtoken";
+    const url = "https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/tokens/createtoken";
     const data = {
         name: name,
         address: address,
@@ -427,7 +427,7 @@ function addAccount(){
 
     let wallet = new ethers.Wallet(privateKey, provider);
 
-    fetch("http://localhost:3000/api/v1/account/allaccount")
+    fetch("https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/account/allaccount")
     .then(result => result.json())
     .then((data) => {
 
@@ -438,7 +438,7 @@ function addAccount(){
         }   
         else{
 
-            const url = "http://localhost:3000/api/v1/account/createaccount";
+            const url = "https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/account/createaccount";
 
             const data = {
                 privateKey: privateKey,
@@ -472,7 +472,7 @@ function  render(){
     const tokenRender = document.querySelector(".assets");
     const accountRender = document.querySelector(".accountList");
 
-    const url = "http://localhost:3000/api/v1/tokens/alltoken";
+    const url = "https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/tokens/alltoken";
     fetch(url).then((response) => response.json()).then(async (data) =>{
         let elements = "";
 
@@ -508,7 +508,7 @@ function  render(){
     })
     .catch(error => console.log(error));
 
-    fetch("http://localhost:3000/api/v1/account/allaccount").then((response) => 
+    fetch("https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/account/allaccount").then((response) => 
         response.json())
         .then((data) => {
             let accounts ="";
@@ -567,7 +567,7 @@ function changeAccount(address,privateKey) {
     const previousWallet = JSON.parse(localStorage.getItem("userWallet"));
 
     if(previousWallet?.address){
-        fetch("http://localhost:3000/api/v1/account/allaccount")
+        fetch("https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/account/allaccount")
         .then(result => result.json())
         .then((data) =>{
 
@@ -575,7 +575,7 @@ function changeAccount(address,privateKey) {
 
             if(!addressExists){
 
-                const url = "http://localhost:3000/api/v1/account/createaccount";
+                const url = "https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/account/createaccount";
 
                 const data = {
                     privateKey: previousWallet.private_key,
