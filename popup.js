@@ -508,7 +508,7 @@ function  render(){
     })
     .catch(error => console.log(error));
 
-    fetch("https://wallet-extension-deploy-594777041261.us-central1.run.app/v1/account/allaccount").then((response) => 
+    fetch("https://wallet-extension-deploy-594777041261.us-central1.run.app/api/v1/account/allaccount").then((response) => 
         response.json())
         .then((data) => {
             let accounts ="";
