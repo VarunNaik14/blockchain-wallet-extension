@@ -1,3 +1,4 @@
+//
 var commonjsGlobal =
   typeof globalThis !== "undefined"
     ? globalThis
